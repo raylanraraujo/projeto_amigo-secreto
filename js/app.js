@@ -16,7 +16,15 @@ function adicionar() {
 
 function sortear() {
     embaralha(amigosIncluidos);
-    console.log(amigosIncluidos)
+    let listaSorteio = document.getElementById('lista-sorteio');
+
+    for (i = 0 ; i < amigosIncluidos.length; i++){
+        if (i == amigosIncluidos.length -1 ){
+            listaSorteio.innerHTML += `${amigosIncluidos[i]} --> ${amigosIncluidos[0]} <br>`;
+        } else {
+            listaSorteio.innerHTML += `${amigosIncluidos[i]} --> ${amigosIncluidos[i+1]} <br>`;
+        }
+    }
 }
 
 //função embralha é o algoritmo Fisher–Yates
