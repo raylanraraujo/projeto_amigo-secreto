@@ -4,6 +4,16 @@ function adicionar() {
     let amigo = document.getElementById('nome-amigo').value;
     let listaAmigos = document.getElementById('lista-amigos');
 
+    if ( amigo == '') {  //Evitar que seja adicionado quando o campo estiver vazio
+        alert('Digite um nome antes de adicionar!');
+        return;
+    }
+
+    if (amigosIncluidos.includes(amigo.toUpperCase())){  //verificar se o nome inserio já foi adicionado na lista
+        alert('Esse nome já foi adicionado.');
+        return;
+    }
+
     if (listaAmigos.textContent == ''){
         listaAmigos.textContent = amigo;
     } else {
@@ -11,10 +21,16 @@ function adicionar() {
     }
     document.getElementById('nome-amigo').value = '';
 
-    amigosIncluidos.push(amigo) //incluir a variável 'AMIGO' no array 'AMIGOS INCLUÍDOS'
+    amigosIncluidos.push(amigo.toUpperCase()) //incluir a variável 'AMIGO' no array 'AMIGOS INCLUÍDOS'
 }
 
 function sortear() {
+
+    while ( amigosIncluidos.length < 4){ //limitar uma quantidade mínima de pessoas para o sorteio
+        alert('Adicione pelo menos 4 amigos')
+        return;
+    }
+    
     embaralha(amigosIncluidos);
     let listaSorteio = document.getElementById('lista-sorteio');
 
@@ -43,3 +59,13 @@ function reiniciar() {
     document.getElementById('lista-amigos').innerHTML = '';
     document.getElementById('lista-sorteio').innerHTML = '';
 }
+
+
+/*
+Validações a serem implementadas
+
+    1) Verificar se há nomes iguais e barrar 
+    2) Impedir que seja incluido na lista sem ter digitado nada
+    3) Sorteio tem que ter um minimo de número de pessoas para participar do sorteio
+
+*/
